@@ -1,0 +1,27 @@
+{
+  "name": "taxi_or_bus",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "firebase": "^9.11.0",
+    "localtunnel": "^2.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-kakao-maps-sdk": "^1.1.4",
+    "react-router-dom": "^6.4.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "vite": "^3.1.0",
+    "vite-plugin-html-env": "^1.2.7"
+  }
+}
