@@ -7,29 +7,34 @@ import { Map, MapMarker } from "react-kakao-maps-sdk"
 import { database } from '../firebase'
 import { ref, onValue } from "firebase/database";
 
+import ReactGA from 'react-ga';
+
+
 function App() {
+  const TRACKING_ID = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID
+  
   const [geoData, setGeoData] = useState([])
   const dbRef = ref(database, 'users/1');
-
+  
   useEffect(() => {
+    ReactGA.initialize(TRACKING_ID)
+    ReactGA.pageview(window.location.pathname);
+
     onValue(dbRef, (snapshot) => {
       const { latitude, longitude } = snapshot.val();
       setGeoData([latitude, longitude])
-      console.log(latitude, longitude);
     });
 
     setInterval( async () => {
       onValue(dbRef, (snapshot) => {
         const { latitude, longitude } = snapshot.val();
         setGeoData([latitude, longitude])
-        console.log(latitude, longitude);
       });
-    }, 60000)
+    }, 20000)
   }, [])
 
   useEffect(() => {
   }, [geoData])
-
 
   const MapComponent = () => {
     return (
@@ -38,7 +43,7 @@ function App() {
       style={{ width: "100%", height: "360px" }}
       >
         <MapMarker position={{ lat: geoData[0], lng: geoData[1] }}>
-          <div style={{color:"#000"}}>Hello World!</div>
+          <div style={{color:"#000", width:'152px', display:'flex', justifyContent:'center', marginTop:0, marginBottom: 0}}>요기</div>
         </MapMarker>
       </Map>
     )
@@ -47,6 +52,17 @@ function App() {
   return (
     <main className="App">
       <div>
+        <h1>2호차는 어디..?</h1>
+        
+        <div className="card">
+          <MapComponent />
+          <p>
+            🚀 20초마다 갱신됩니다
+          </p>
+        </div>
+        <p className="read-the-docs">
+          API 제한으로 인해 20초마다 갱신해서<br/>버스의 20초 전의 위치를 나타내요.<br/>3 ~ 5분 이상 버스가 안움직이면 버그일 확률도 있습니다.<br/>
+        </p>
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
@@ -54,17 +70,6 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a> 
       </div>
-      <h1>Taxi or Bus</h1>
-      
-      <div className="card">
-        <MapComponent />
-        <p>
-          오차 범위가 발생할 수 있어요ㅎㅎ
-        </p>
-      </div>
-      <p className="read-the-docs">
-        🚀 1분마다 갱신됩니다?
-      </p>
       <footer>
         <a href="mailto:dm10802@gmail.com">✉️ 개선할 점을 보내주세요</a>
       </footer>

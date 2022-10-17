@@ -8,8 +8,8 @@ export default defineConfig({
   plugins: [
     react(),
     VitePluginHtmlEnv({
-      prefix: '<{',
-      suffix: '}>',
+      prefix: '%',
+      suffix: '%',
     })
   ]
 })
