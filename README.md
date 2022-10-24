@@ -19,6 +19,10 @@ Status: Completed
 
 [https://github.com/dm0114/bus_plz_Device](https://github.com/dm0114/bus_plz_Device)
 
+### 1.4 Notion
+
+[https://lake-smell-f4c.notion.site/e44253d8d68446f5983118a5f85ea599](https://www.notion.so/e44253d8d68446f5983118a5f85ea599)
+
 ## 2. 서비스 소개
 
 **예정된 셔틀 버스시간과 실제 도착하는 시간의 차이 때문에 불편을 겪는 사람들이 많아서 개발한 서비스**
